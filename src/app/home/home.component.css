@@ -1,0 +1,24 @@
+
+.side-nav {
+    position: absolute;
+    height: 100%;
+    left: 314px;
+}
+
+#filler {
+    position: relative;
+    background: #d4d4d4;
+    height: 100%;
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    color: white;
+}
+
+#filler > i {
+    font-size: 70px
+}
+
+#filler-content {
+    width: 100%;
+    text-align: center;
+}

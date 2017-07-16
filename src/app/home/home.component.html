@@ -1,0 +1,30 @@
+<ul class="side-nav" > <!--[ngClass]="{'slideInLeft': sideNavShown, 'slideOutLeft': !sideNavShown }"-->
+  <li class="subheader" style="padding-left: 10px">
+    Create a new pipeline
+  </li>
+  <li style="padding: 0 10px;">
+    <mz-input-container class="col s12">
+      <input mz-input placeholder="Title" type="text">
+      <button mz-button float class="indigo right">create</button>
+    </mz-input-container>
+  </li>
+  <li style="margin-top: 50px">
+    <div class="divider"></div>
+  </li>
+  <li class="subheader" style="padding-left: 10px">
+
+  </li>
+  <li class="subheader" style="padding-left: 10px">
+    Open an existing pipeline
+  </li>
+  <li style="padding: 10px; padding-top: 0">
+    <app-open-pipeline></app-open-pipeline>
+  </li>
+</ul>
+<div id="filler" class="valign-wrapper">
+  <i class="material-icons animated slideInRight">arrow_back</i>
+  <div id="filler-content">
+    <h4>No pipeline is chosen</h4>
+    <p>Open or create a new one in the left side panel</p>
+  </div>
+</div>

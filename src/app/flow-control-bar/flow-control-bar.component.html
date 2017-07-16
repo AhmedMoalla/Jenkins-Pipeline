@@ -1,0 +1,57 @@
+<div *ngIf="currentFlow | async; let flow">
+  <nav class="white">
+    <div class="nav-wrapper">
+      <ul class="left">
+        <li>
+          <a class="text">
+            {{flow.name}}
+          </a>
+        </li>
+        <li>
+          <a class="text">
+            Latest Build: State
+          </a>
+        </li>
+        <li>
+          <a class="text">
+            Latest Build Date: 15 / 07 / 2017
+          </a>
+        </li>
+      </ul>
+      <ul class="right">
+        <li>
+          <a style="color: rgba(0, 0, 0, 0.6);" mz-tooltip [tooltip]="'View Code'" [position]="bottom" [delay]="100" (click)="viewCodeModal.open()">
+            <i class="material-icons">code</i>
+          </a>
+        </li>
+        <li>
+          <a class="indigo-text" (click)="saveCurrentFlow()" mz-tooltip [tooltip]="'Save'" [position]="bottom" [delay]="100">
+            <i class="material-icons">save</i>
+          </a>
+        </li>
+        <li>
+          <a class="red-text" mz-tooltip [tooltip]="'Stop'" [position]="bottom" [delay]="100">
+            <i class="material-icons">stop</i>
+          </a>
+        </li>
+        <li>
+          <a class="green-text" mz-tooltip [tooltip]="'Run'" [position]="bottom" [delay]="100">
+            <i class="material-icons">play_arrow</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <mz-modal #viewCodeModal [fixedFooter]="true">
+    <mz-modal-header>
+      {{flow.name + ' (JSON)'}}
+    </mz-modal-header>
+    <mz-modal-content>
+      <t-json-viewer [json]="currentFlow | async"></t-json-viewer>
+    </mz-modal-content>
+    <mz-modal-footer>
+      <button mz-button [flat]="true" mz-modal-close class="modal-button">Close</button>
+      <button mz-button [flat]="true" class="modal-button" ngxClipboard [cbContent]="currentFlow | async | json" (click)="toast.show('Copied to Clipboard', 1000)">Copy As JSON</button>
+    </mz-modal-footer>
+  </mz-modal>
+</div>

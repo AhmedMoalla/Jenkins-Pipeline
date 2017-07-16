@@ -1,0 +1,17 @@
+<div *ngIf="currentFlow | async; else loadingFlow; let flow" class="flow-dashboard">
+
+  <div class="bar">
+    <app-flow-control-bar></app-flow-control-bar>
+  </div>
+    
+  <div class="card params">
+    Params
+  </div>
+  <div class="card flow">
+    <app-flow></app-flow>
+  </div>
+  <div class="card builds-logs">
+    Logs/Builds
+  </div>
+</div>
+<ng-template #loadingFlow>Waiting...</ng-template>

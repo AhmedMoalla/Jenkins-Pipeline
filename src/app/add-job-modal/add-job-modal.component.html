@@ -1,0 +1,29 @@
+<mz-modal [id]="'add-job-modal'" [fixedFooter]="true" [options]="options">
+  <mz-modal-header>
+    Add a job
+  </mz-modal-header>
+  <mz-modal-content>
+    <mz-collection>
+      <mz-collection-item>
+          <div class="input-field valign-wrapper">
+              <i class="material-icons prefix">search</i>
+              <input type="text" placeholder="Search" [(ngModel)]="searchFilter.name">
+          </div>
+      </mz-collection-item>
+      <div style="max-height: 212px; overflow-y: scroll" class="scrolling-div">
+          <a style="cursor: pointer" 
+            mz-collection-link 
+            (click)="selectJobToAdd(job)" 
+            [active]="job.active" 
+            *ngFor="let job of allJobs | filterBy: searchFilter">{{ job.name }}</a>
+      </div>
+    </mz-collection>
+    <div class="card indigo white-text" style="padding: 10px;position: absolute;width: calc(100% - 48px);bottom: 15px;">
+      Selected job: {{selectedJob ? selectedJob.name : 'None'}}
+    </div>
+  </mz-modal-content>
+  <mz-modal-footer>
+    <button mz-button [flat]="true" mz-modal-close class="modal-button" (click)="onClose()">Close</button>
+    <button mz-button [flat]="true" mz-modal-close class="modal-button" (click)="pushJob()" [disabled]="!selectedJob">Add job</button>
+  </mz-modal-footer>
+</mz-modal>

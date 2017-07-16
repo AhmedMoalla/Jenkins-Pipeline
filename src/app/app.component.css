@@ -1,0 +1,16 @@
+
+#wrapper {
+    position:relative;
+    height: 100%;
+}
+
+#top, #middle {
+    position:absolute;
+}
+
+#middle {
+    /*background: #d4d4d4;*/
+    top: 64px;
+    bottom:0;
+    width:100%;
+}

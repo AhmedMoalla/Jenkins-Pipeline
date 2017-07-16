@@ -1,0 +1,11 @@
+<mz-collection>
+    <mz-collection-item>
+        <div class="input-field valign-wrapper">
+            <i class="material-icons prefix">search</i>
+            <input type="text" placeholder="Search" [(ngModel)]="searchFilter.name">
+        </div>
+    </mz-collection-item>
+    <div style="max-height: 212px; overflow-y: scroll" class="scrolling-div">
+        <a mz-collection-link *ngFor="let flow of allflows | async | filterBy: searchFilter" [routerLink]="['/flow/', flow.name]">{{flow.name}}</a>
+    </div>
+</mz-collection>

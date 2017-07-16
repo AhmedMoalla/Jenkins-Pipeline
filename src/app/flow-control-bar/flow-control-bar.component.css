@@ -1,0 +1,16 @@
+nav div ul li:first-child a {
+    font-size: 25px;
+}
+nav a.text {
+    color: rgba(0, 0, 0, 0.6);
+    cursor: default;
+}
+
+nav a.text:hover {
+    background-color: transparent;
+}
+
+.modal-button:hover {
+    color: white;
+    background-color: #3F51B5;
+}
