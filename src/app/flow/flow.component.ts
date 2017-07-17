@@ -45,6 +45,13 @@ export class FlowComponent implements OnInit {
           flow.flow[i] = flow.flow[i][0];
         }
       }
+      this.J.saveFlow(flow.name, flow)
+            .subscribe((res) => {
+              this.J.getFlowParams(flow.name).subscribe((params) => {
+                flow.parameters = params.json();
+                this.J.saveFlow(flow.name, flow).subscribe();
+              })
+            });
     });
   }
 

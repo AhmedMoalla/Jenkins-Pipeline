@@ -1,5 +1,6 @@
 export class Flow {
-    timestamp: number;
-    name: string;
-    flow: any[];
+    timestamp?: number;
+    name?: string;
+    flow?: any[];
+    parameters?: any;
 }

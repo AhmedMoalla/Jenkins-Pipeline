@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Store } from '@ngrx/store';
 import { SET_CURRENT_FLOW } from '../_reducers/currentflow';
@@ -21,6 +21,7 @@ export class FlowDashboardComponent implements OnInit {
   constructor(
     private store: Store<State>,
     private route: ActivatedRoute,
+    private router: Router,
     private J: JenkinsRemoteService
   ) {
     this.currentFlow = this.store.select('currentFlow');
@@ -29,7 +30,12 @@ export class FlowDashboardComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap
     .switchMap((params: ParamMap) => this.J.getFlow(params.get('flowName')))
-    .subscribe(flow => this.openFlow(flow));
+    .subscribe(response => {
+      if (response.error == 'NOT_FOUND') {
+        this.router.navigateByUrl('/404');
+      }
+      else this.openFlow(response);
+    });
   }
 
 

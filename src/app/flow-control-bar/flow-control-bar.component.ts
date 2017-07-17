@@ -27,7 +27,7 @@ export class FlowControlBarComponent implements OnInit {
 
   saveCurrentFlow() {
     this.currentFlow.subscribe((flow) => {
-      this.J.saveFlow(flow.name, flow.flow)
+      this.J.saveFlow(flow.name, flow)
             .subscribe((res) => this.toast.show(`Flow "${flow.name}" saved.`, 1500));
     })
   }

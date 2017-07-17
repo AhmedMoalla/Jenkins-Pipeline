@@ -17,7 +17,7 @@ export class JenkinsRemoteService {
     return this.http.post(this.rooturl + '/runFlow', flow);
   }
 
-  saveFlow(name: string, flow: any) {
+  saveFlow(name: string, flow: Flow = {}) {
     return this.http.post(this.rooturl + '/saveFlow?name=' + name, flow);
   }
 
@@ -25,8 +25,8 @@ export class JenkinsRemoteService {
     return this.http.get(this.rooturl + '/flows');
   }
 
-  getFlow(name: string) : Observable<Flow> {
-    return this.http.get(this.rooturl + '/flows/' + name).map((response) => response.json() as Flow);
+  getFlow(name: string) : Observable<Flow | any> {
+    return this.http.get(this.rooturl + '/flows/' + name).map((response) => response.json());
   }
 
   flowExists(name: string) {
@@ -35,5 +35,9 @@ export class JenkinsRemoteService {
 
   getJobParams(name: string) {
     return this.http.get(this.rooturl + '/jobParams?name=' + name);
+  }
+
+  getFlowParams(name: string) {
+    return this.http.get(this.rooturl + '/flows/' + name + '/params');
   }
 }

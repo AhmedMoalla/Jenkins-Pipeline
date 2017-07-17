@@ -23,6 +23,7 @@ import { FlowComponent } from './flow/flow.component';
 import { FlowDashboardComponent } from './flow-dashboard/flow-dashboard.component';
 import { FlowControlBarComponent } from './flow-control-bar/flow-control-bar.component';
 import { AddJobModalComponent } from './add-job-modal/add-job-modal.component';
+import { FlowParamsComponent } from './flow-params/flow-params.component';
 
 const routes: Routes = [
   /*
@@ -35,7 +36,8 @@ const routes: Routes = [
   },*/
   { path: 'flow/:flowName', component: FlowDashboardComponent },
   { path: '', component: HomeComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', redirectTo: '404'},
+  { path: '404', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -48,7 +50,8 @@ const routes: Routes = [
     FlowComponent,
     FlowDashboardComponent,
     FlowControlBarComponent,
-    AddJobModalComponent
+    AddJobModalComponent,
+    FlowParamsComponent
   ],
   imports: [
     BrowserModule,

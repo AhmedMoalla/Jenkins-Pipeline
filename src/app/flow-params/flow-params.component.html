@@ -1,0 +1,52 @@
+<div *ngIf="currentFlow | async; else loadingFlow; let flow" class="flow-params">
+  <h4>Flow parameters</h4>
+  <div *ngFor="let key of getKeys(flow.parameters)">
+    <div [ngSwitch]="flow.parameters[key].type">
+      <div *ngSwitchCase="'StringParameterDefinition'">
+        <mz-input-container class="col s12">
+          <input mz-input
+            [label]="key"
+            [id]="key"
+            placeholder="Enter a value"
+            [(ngModel)]="flow.parameters[key].value"
+            type="text">
+        </mz-input-container>
+      </div>
+      <div *ngSwitchCase="'TextParameterDefinition'">
+        <mz-textarea-container>
+          <textarea mz-textarea
+            [label]="key"
+            [id]="key"
+            placeholder="Enter a value"
+            [(ngModel)]="flow.parameters[key].value"></textarea>
+        </mz-textarea-container>
+      </div>
+      <div *ngSwitchCase="'PasswordParameterDefinition'">
+        <mz-input-container class="col s12">
+          <input mz-input
+            [label]="key"
+            [id]="key"
+            placeholder="Enter a value"
+            type="password"
+            [(ngModel)]="flow.parameters[key].value">
+        </mz-input-container>
+      </div>
+      <div *ngSwitchCase="'BooleanParameterDefinition'">
+        <p>
+          <input type="checkbox" class="filled-in" [id]="key" [(ngModel)]="flow.parameters[key].value"/>
+          <label [for]="key">{{ key }}</label>
+        </p>
+      </div>
+      <div *ngSwitchCase="'ChoiceParameterDefinition'">
+        <div class="input-field col s12">
+          <select [id]="key" [(ngModel)]="flow.parameters[key].value">
+            <option *ngFor="let choice of flow.parameters[key].choices" value="choice">{{choice}}</option>
+          </select>
+          <label [for]="key">{{ key }}</label>
+        </div>
+      </div>
+      <!--<div *ngSwitchDefault>{{ flow.parameters[key] | json }}</div>-->
+    </div>
+  </div>
+</div>
+<ng-template #loadingFlow>Waiting...</ng-template>

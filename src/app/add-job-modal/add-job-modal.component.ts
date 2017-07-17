@@ -51,14 +51,26 @@ export class AddJobModalComponent extends MzBaseModal implements OnInit {
 
   pushJob() {
     this.currentFlow.subscribe((flow) => {
-      if (this.jobPosition === undefined) {
-        flow.flow.push(this.selectedJob);
-      } else if (flow.flow[this.jobPosition] instanceof Array) {
-        flow.flow[this.jobPosition].push(this.selectedJob);
-      } else {
-        flow.flow[this.jobPosition] = [... [flow.flow[this.jobPosition], this.selectedJob]]
-      }
-      this.selectedJob = null;
+
+      this.J.getJobParams(this.selectedJob.name).subscribe((params) => {
+        this.selectedJob.params = params.json();
+        if (this.jobPosition === undefined) {
+          flow.flow.push(this.selectedJob);
+        } else if (flow.flow[this.jobPosition] instanceof Array) {
+          flow.flow[this.jobPosition].push(this.selectedJob);
+        } else {
+          flow.flow[this.jobPosition] = [... [flow.flow[this.jobPosition], this.selectedJob]]
+        }
+        this.selectedJob = null;
+        this.J.saveFlow(flow.name, flow)
+              .subscribe((res) => {
+                this.J.getFlowParams(flow.name).subscribe((params) => {
+                  flow.parameters = params.json();
+                  this.J.saveFlow(flow.name, flow).subscribe();
+                })
+              });
+      })
+
     });
   }
 
