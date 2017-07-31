@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { State } from '../state';
+import { JenkinsRemoteService } from '../jenkins-remote.service';
+import { Router } from '@angular/router';
 
-import { INCREMENT, DECREMENT, RESET } from '../_reducers/counter';
 
 @Component({
   selector: 'app-home',
@@ -11,23 +9,19 @@ import { INCREMENT, DECREMENT, RESET } from '../_reducers/counter';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  sideNavShown: boolean = true;
-  counter: Observable<number>;
+	sideNavShown: boolean = true;
+	newFlowTitle: string = '';
 
-	constructor(private store: Store<State>){
-		this.counter = store.select('counter');
+	constructor(
+		private J: JenkinsRemoteService,
+		private router: Router
+	){
 	}
 
-	increment(){
-		this.store.dispatch({ type: INCREMENT });
-	}
-
-	decrement(){
-		this.store.dispatch({ type: DECREMENT });
-	}
-
-	reset(){
-		this.store.dispatch({ type: RESET });
+	createFlow() {
+		if (this.newFlowTitle != '' && this.newFlowTitle != null && this.newFlowTitle != undefined) {
+			this.J.saveFlow(this.newFlowTitle).subscribe(() => this.router.navigateByUrl('/flow/' + this.newFlowTitle));
+		}
 	}
 
   ngOnInit() {

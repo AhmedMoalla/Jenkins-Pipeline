@@ -1,0 +1,181 @@
+table.browser-default {
+    width: initial;
+}
+
+.node-wrapper { 
+    text-align: center;
+    min-width: 200px;
+    max-width: 200px;
+    min-height:110px;
+    max-height:110px;
+    height: 110px;
+    width: 200px;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+.no-border {
+    border: none;
+}
+
+.node-title {
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.9);
+    background: white;
+    padding: 5px;
+    border: 1px solid lightgray;
+    display: inline-block;
+    border-radius: 5px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.node-title.add-title {
+    border: 2px solid #3f51b5 ;
+}
+
+.node.node-deletable span {
+    font-size: 10px;
+    color: white;
+    height: 13px;
+    width: 13px;
+    background-color: #f44336;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+}
+
+.node.node-deletable span i {
+    font-size: 11px;
+    padding-top: 2px;
+}
+
+.node { 
+    margin: 0 auto;
+    background-color: white;
+    border: 3px solid grey;
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.node.start-node {
+    background-color: grey;
+    width: 15px;
+    height: 15px;
+    cursor: default;
+}
+
+.node.end-node {
+    background-color: grey;
+    width: 15px;
+    height: 15px;
+    cursor: default;
+}
+
+.node.end-node::after {
+    display: none;
+}
+
+.node.node-selected {
+    background-color: lightgrey;
+}
+
+.node.node-success {
+    background-color: #81c784;
+    border-color: #4caf50 
+}
+
+.node.node-error {
+    border-color: #d32f2f ;
+    background-color: #f44336;
+}
+
+.node-start {
+    cursor: auto;
+}
+
+.node-add::after {
+    display: none;
+}
+
+.node::after {
+    content: "";
+    width: 200px;
+    height: 5px;
+    left: 15px;
+    top: 10px;
+    background-color: grey;
+    position: absolute;
+    z-index: -1;
+}
+
+.node.start-node::after {
+    height: 5px;
+    background-color: grey;
+    position: absolute;
+    z-index: -2;
+    top: 2px;
+    left: 10px;
+    width: 205px;
+}
+
+.node > span {
+    margin-top: 7px;
+    margin-left: 2px;
+    color: white;
+}
+
+.level-2-node {
+    padding-top: 20px;
+}
+
+.level-2-node .node:after {
+    width: 0px;
+    height: 0px;
+}
+
+.level-2-node .node:before {
+    content: "";
+    height: 128px;
+    width: 30px;
+    border-left: 5px solid grey;
+    border-bottom: 5px solid grey;
+    border-bottom-left-radius: 5px;
+    top: -110px;
+    left: -20px;
+    position: absolute;
+    z-index: -2;
+}
+
+.disabled .node-title,
+.disabled .node {
+    background: lightgrey;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.disabled .node-title {
+    border: 2px solid grey;
+    color: grey;
+}
+
+span.disabled {
+    background: lightgrey !important;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+span.disabled i {
+    color: grey;
+}

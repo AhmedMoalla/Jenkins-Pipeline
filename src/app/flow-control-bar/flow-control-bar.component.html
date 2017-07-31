@@ -19,23 +19,32 @@
         </li>
       </ul>
       <ul class="right">
+        <li *ngIf="flow.isRunning">
+          <div class="status-indicator valign-wrapper">
+            <mz-spinner
+            [color]="'indigo'"
+            [size]="'small'">
+            </mz-spinner>
+            <span>Pipeline is running</span>
+          </div>
+        </li>
         <li>
           <a style="color: rgba(0, 0, 0, 0.6);" mz-tooltip [tooltip]="'View Code'" [position]="bottom" [delay]="100" (click)="viewCodeModal.open()">
             <i class="material-icons">code</i>
           </a>
         </li>
         <li>
-          <a class="indigo-text" (click)="saveCurrentFlow()" mz-tooltip [tooltip]="'Save'" [position]="bottom" [delay]="100">
+          <a class="indigo-text" [ngClass]="{'disabled': flow.isRunning }" (click)="saveCurrentFlow()" mz-tooltip [tooltip]="'Save'" [position]="bottom" [delay]="100">
             <i class="material-icons">save</i>
           </a>
         </li>
         <li>
-          <a class="red-text" mz-tooltip [tooltip]="'Stop'" [position]="bottom" [delay]="100">
+          <a class="red-text" [ngClass]="{'disabled': !flow.isRunning }" (click)="stopCurrentFlow()" mz-tooltip [tooltip]="'Stop'" [position]="bottom" [delay]="100">
             <i class="material-icons">stop</i>
           </a>
         </li>
         <li>
-          <a class="green-text" mz-tooltip [tooltip]="'Run'" [position]="bottom" [delay]="100">
+          <a class="green-text" [ngClass]="{'disabled': flow.isRunning }" (click)="runCurrentFlow()" mz-tooltip [tooltip]="'Run'" [position]="bottom" [delay]="100">
             <i class="material-icons">play_arrow</i>
           </a>
         </li>

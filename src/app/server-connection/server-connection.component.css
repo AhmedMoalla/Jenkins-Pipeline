@@ -1,0 +1,14 @@
+.server-error {
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 64px);
+    top: -64px;
+    z-index: 99999;
+    background-color: #f44336;
+}
+
+.server-error div {
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}

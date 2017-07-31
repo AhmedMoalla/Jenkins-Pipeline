@@ -1,0 +1,45 @@
+<div *ngIf="currentBuild && (currentBuild | async); let build">
+  <table class="browser-default" border="1">
+    <tr *ngFor="let row of createRange(maxArray(flow.flow)); first as isFirstRow">
+      <td *ngIf="isFirstRow" class="node-wrapper no-border">
+        <div class="node-title z-depth-1">Start</div>
+        <div class="start-node node"></div>
+      </td>
+      <td *ngIf="!isFirstRow"></td>
+      <td *ngFor="let job of flow.flow; index as j" class="node-wrapper no-border" [ngClass]="{'level-2-node': !isFirstRow}">
+          <div *ngIf="!isArray(job) && isFirstRow">
+            <div class="node-title z-depth-1">
+              {{job.name}}
+            </div>
+          
+            <div class="node"
+              (click)="showJobBuildDetails(job.name, build.jobBuilds[j])"
+              [ngClass]="{
+                'node-success': job.status === 'SUCCESS',
+                'node-error': job.status !== 'SUCCESS' && job.status !== 'PROGRESS' && job.status }"
+                mz-tooltip [tooltip]="'View Job Details'" [position]="bottom" [delay]="100">
+                <div *ngIf="job.status === 'PROGRESS'" class="preloader-wrapper active small" style="width: 24px; height: 24px;"><div class="spinner-layer" style="border-color: #ffca28"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+            </div>
+          </div>
+          <div *ngIf="isArray(job) && job[row]">
+            <div class="node-title z-depth-1">
+              {{job[row].name}}
+            </div>
+          
+            <div class="node" 
+              (click)="showJobBuildDetails(job[row].name, build.jobBuilds[j][row])"
+              [ngClass]="{
+                'node-success': job[row].status === 'SUCCESS',
+                'node-error': job[row].status !== 'SUCCESS' && job[row].status !== 'PROGRESS' && job[row].status }"
+                mz-tooltip [tooltip]="'View Job Details'" [position]="bottom" [delay]="100">
+              <div *ngIf="job[row].status === 'PROGRESS'" class="preloader-wrapper active small" style="width: 24px; height: 24px;"><div class="spinner-layer" style="border-color: #ffca28"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+            </div>
+          </div>
+      </td>
+      <td *ngIf="isFirstRow" class="node-wrapper no-border">
+        <div class="node-title z-depth-1">End</div>
+        <div class="end-node node"></div>
+      </td>
+    </tr>
+  </table>
+</div>

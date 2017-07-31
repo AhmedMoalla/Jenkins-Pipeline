@@ -1,0 +1,67 @@
+<div *ngIf="currentFlow | async; else loadingFlow; let flow" class="flow-builds">
+  <h4 style="margin-left: 10px">Pipeline: {{ flow.name }}</h4>
+  <div class="container">
+    <div class="row valign-wrapper">
+      <div class="col s9">
+        <h5>Latest builds:</h5>
+        <app-flow-builds-table></app-flow-builds-table>
+      </div>
+      <div class="col s3">
+        <app-flow-builds-pie></app-flow-builds-pie>
+      </div>
+    </div>
+    <div class="row stat-cards" *ngIf="currentFlowStats | async; let stats">
+      <div class="col s3">
+        <div class="card green lighten-1">
+          <div class="card-content white-text">
+            <span class="card-title">Latest Successful Pipeline Build</span>
+            <p>{{ '#' + stats.latestSuccessfulBuild }}</p>
+          </div>
+          <div class="card-action">
+            <a class="white-text" href="#">See details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="card green lighten-1">
+          <div class="card-content white-text">
+            <span class="card-title">Most Successful Job</span>
+            <p>{{ stats.mostSuccessfulJob }}</p>
+          </div>
+          <div class="card-action">
+            <a class="white-text" href="#">See details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="card red lighten-1">
+          <div class="card-content white-text">
+            <span class="card-title">Latest Failed Pipeline Build</span>
+            <p>
+              {{ '#' + stats.latestFailedBuild }}
+            </p>
+          </div>
+          <div class="card-action">
+            <a class="white-text" href="#">See details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="card red lighten-1">
+          <div class="card-content white-text">
+            <span class="card-title">Most Failed Job</span>
+            <p>{{ stats.mostFailingJob }}</p>
+          </div>
+          <div class="card-action">
+            <a class="white-text" href="#">See details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-left: 10px; margin-right: 10px">
+      <h5>Builds duration history:</h5>
+      <app-flow-builds-duration-line></app-flow-builds-duration-line>
+    </div>
+  </div>
+</div>
+<ng-template #loadingFlow>Loading...</ng-template>

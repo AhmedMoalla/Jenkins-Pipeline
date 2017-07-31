@@ -14,3 +14,31 @@ nav a.text:hover {
     color: white;
     background-color: #3F51B5;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: lightgrey;
+}
+
+a.disabled i {
+    color: grey;
+}
+
+.status-indicator {
+    background-color: #7986cb;
+    border: 2px solid #3f51b5;
+    height: 52px;
+    margin: 7px 0;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.status-indicator > span {
+    color: white;
+    margin-left: 10px;
+}
+
+.status-indicator > mz-spinner {
+    margin-top: 25px;
+}

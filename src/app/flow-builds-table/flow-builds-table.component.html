@@ -1,0 +1,38 @@
+<div *ngIf="currentFlow | async; let flow" class="center">
+  <table class="bordered z-depth-1">
+    <thead>
+      <tr>
+        <th style="padding: 0 20px">ID</th>
+        <th>Status</th>
+        <th>Build Date</th>
+        <th>Duration (s)</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let build of fiveBuilds | orderBy: 'buildId' : true">
+        <tr class="lighten-5" [ngClass]="{'red': build.status != 'SUCCESS', 'green': build.status == 'SUCCESS' }">
+          <td style="padding: 0 20px">{{ build.buildId }}</td>
+          <td [ngClass]="{'red-text': build.status != 'SUCCESS', 'green-text': build.status == 'SUCCESS' }">{{ build.status }}</td>
+          <td>{{ timestampToDateString(build.timestamp) }}</td>
+          <td>{{ build.duration / 1000 }}</td>
+          <td>
+            <a [routerLink]="['/flow', flow.name, 'builds', build.buildId]" class="btn waves-effect waves-indigo" style="margin: 0; padding: 0 10px;">
+              <i class="material-icons">open_in_new</i>
+            </a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <ul class="pagination">
+    <li [ngClass]="{'disabled': (activePage - 1) < 0}" class="waves-effect"><a (click)="goToPage(activePage - 1)"><i class="material-icons">chevron_left</i></a></li>
+    <li 
+      *ngFor="let p of nbPagesRange()"
+      class="waves-effect" 
+      [ngClass]="{'active indigo': activePage == p}">
+      <a (click)="goToPage(p)">{{ p + 1 }}</a>
+    </li>
+    <li [ngClass]="{'disabled': activePage == maxPage}" class="waves-effect"><a (click)="goToPage(activePage + 1)"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</div>

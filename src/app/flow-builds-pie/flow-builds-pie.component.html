@@ -1,0 +1,6 @@
+<div style="display: block; padding: 20px" *ngIf="currentFlowStats | async; let stats" class="card">
+  <canvas baseChart
+          [data]="[stats.nbFailedBuilds, stats.nbSuccessfulBuilds]"
+          [labels]="['Failed Builds','Successful Builds']"
+          [chartType]="'pie'"></canvas>
+</div>

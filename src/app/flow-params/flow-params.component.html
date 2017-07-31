@@ -1,5 +1,5 @@
 <div *ngIf="currentFlow | async; else loadingFlow; let flow" class="flow-params">
-  <h4>Flow parameters</h4>
+  <h4>Pipeline parameters</h4>
   <div *ngFor="let key of getKeys(flow.parameters)">
     <div [ngSwitch]="flow.parameters[key].type">
       <div *ngSwitchCase="'StringParameterDefinition'">
@@ -9,6 +9,7 @@
             [id]="key"
             placeholder="Enter a value"
             [(ngModel)]="flow.parameters[key].value"
+            [disabled]="flow.isRunning"
             type="text">
         </mz-input-container>
       </div>
@@ -18,7 +19,8 @@
             [label]="key"
             [id]="key"
             placeholder="Enter a value"
-            [(ngModel)]="flow.parameters[key].value"></textarea>
+            [(ngModel)]="flow.parameters[key].value"
+            [disabled]="flow.isRunning"></textarea>
         </mz-textarea-container>
       </div>
       <div *ngSwitchCase="'PasswordParameterDefinition'">
@@ -28,18 +30,19 @@
             [id]="key"
             placeholder="Enter a value"
             type="password"
-            [(ngModel)]="flow.parameters[key].value">
+            [(ngModel)]="flow.parameters[key].value"
+            [disabled]="flow.isRunning">
         </mz-input-container>
       </div>
       <div *ngSwitchCase="'BooleanParameterDefinition'">
         <p>
-          <input type="checkbox" class="filled-in" [id]="key" [(ngModel)]="flow.parameters[key].value"/>
+          <input [disabled]="flow.isRunning" type="checkbox" class="filled-in" [id]="key" [(ngModel)]="flow.parameters[key].value"/>
           <label [for]="key">{{ key }}</label>
         </p>
       </div>
       <div *ngSwitchCase="'ChoiceParameterDefinition'">
         <div class="input-field col s12">
-          <select [id]="key" [(ngModel)]="flow.parameters[key].value">
+          <select [disabled]="flow.isRunning" [id]="key" [(ngModel)]="flow.parameters[key].value">
             <option *ngFor="let choice of flow.parameters[key].choices" value="choice">{{choice}}</option>
           </select>
           <label [for]="key">{{ key }}</label>

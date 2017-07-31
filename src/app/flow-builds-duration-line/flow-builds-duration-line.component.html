@@ -1,0 +1,9 @@
+<div *ngIf="currentFlowStats | async; let stats" class="line-chart card" style="padding: 20px">
+  <canvas baseChart height="300px"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineColors"
+              [chartType]="'line'">
+  </canvas>
+</div>

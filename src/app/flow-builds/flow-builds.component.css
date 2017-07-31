@@ -1,0 +1,23 @@
+.flow-builds {
+    padding: 10px;
+}
+
+.flow-builds .container {
+    width: 100%;
+    margin: 0;
+    max-width: none;
+    min-width: none;
+}
+
+.flow-builds .container .row {
+    margin: 20px 0;
+}
+
+.stat-cards > div > div.card {
+    height: 180px;
+}
+
+.stat-cards > div > div.card .card-action {
+    position: absolute;
+    bottom: 0px;
+}

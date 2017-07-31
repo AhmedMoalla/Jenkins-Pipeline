@@ -1,0 +1,81 @@
+nav ul li {
+    margin: 0 30px
+}
+
+nav ul a.text:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.logs-params {
+    width: 100%; 
+    margin: 0; 
+    max-width: none;
+}
+
+.logs-params .card {
+    height: 500px;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+.logs-params .card h4 {
+    margin: 0;
+}
+
+.logs-params .params .collection {
+    overflow-y: scroll;
+    height: 420px;
+}
+
+.logs-params .logs pre {
+    overflow-y: scroll;
+    height: 415px;
+    border: 1px solid lightgrey;
+}
+.logs-params .logs pre::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.logs-params .logs pre::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
+
+
+.logs-params .logs pre::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: lightgrey;
+}
+
+.logs-params .logs pre::-webkit-scrollbar:horizontal
+{
+	height: 7px;
+	background-color: #F5F5F5;
+}
+
+.logs-params .params .collection::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.logs-params .params .collection::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
+
+
+.logs-params .params .collection::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: lightgrey;
+}

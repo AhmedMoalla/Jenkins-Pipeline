@@ -15,9 +15,10 @@
             <div class="node node-deletable" 
               [ngClass]="{
                 'node-success': job.status === 'SUCCESS',
-                'node-error': job.status !== 'SUCCESS' && job.status !== 'PROGRESS' && job.status,
-                'node-progress': job.status === 'PROGRESS'}">
-                <span (click)="deleteJob(j)">
+                'node-error': job.status !== 'SUCCESS' && job.status !== 'PROGRESS' && job.status }"
+                mz-tooltip [tooltip]="'View Job Details'" [position]="bottom" [delay]="100">
+                <div *ngIf="job.status === 'PROGRESS'" class="preloader-wrapper active small" style="width: 24px; height: 24px;"><div class="spinner-layer" style="border-color: #ffca28"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+                <span (click)="deleteJob(j)" [ngClass]="{'disabled': flow.isRunning}">
                   <i class="material-icons">close</i>
                 </span>
             </div>
@@ -30,9 +31,10 @@
             <div class="node node-deletable" 
               [ngClass]="{
                 'node-success': job[row].status === 'SUCCESS',
-                'node-error': job[row].status !== 'SUCCESS' && job[row].status !== 'PROGRESS' && job[row].status,
-                'node-progress': job[row].status === 'PROGRESS'}">
-              <span (click)="deleteJob(j, row)">
+                'node-error': job[row].status !== 'SUCCESS' && job[row].status !== 'PROGRESS' && job[row].status }"
+                mz-tooltip [tooltip]="'View Job Details'" [position]="bottom" [delay]="100">
+              <div *ngIf="job[row].status === 'PROGRESS'" class="preloader-wrapper active small" style="width: 24px; height: 24px;"><div class="spinner-layer" style="border-color: #ffca28"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+              <span (click)="deleteJob(j, row)" [ngClass]="{'disabled': flow.isRunning}">
                 <i class="material-icons">close</i>
               </span>
             </div>
@@ -44,14 +46,14 @@
           <div *ngIf="isArray(job) && row >= 1">
             add {{job[row] == job[row - 1]}}
           </div>-->
-          <div *ngIf="(!isArray(job) && row == 1) || (isArray(job) && !job[row] && !!job[row - 1])">
+          <div *ngIf="!isArray(job) && row == 1 || isArray(job) && !job[row] && !!job[row - 1]" [ngClass]="{'disabled': flow.isRunning}">
             <div class="node-title z-depth-1 add-title">Add a job</div>
             <div class="node" (click)="pushJob(j)">
               <i class="material-icons" style="color: grey">add</i>
             </div>
           </div>
       </td>
-      <td *ngIf="isFirstRow" class="node-wrapper no-border">
+      <td *ngIf="isFirstRow" class="node-wrapper no-border" [ngClass]="{'disabled': flow.isRunning}">
         <div class="node-title z-depth-1 add-title">Add a job</div>
         <div class="node node-add" (click)="pushJob()">
           <i class="material-icons" style="color: grey">add</i>
@@ -60,7 +62,7 @@
     </tr>
     <tr>
       <td></td>
-      <td *ngFor="let job of flow.flow; index as j" class="node-wrapper no-border level-2-node">
+      <td *ngFor="let job of flow.flow; index as j" class="node-wrapper no-border level-2-node" [ngClass]="{'disabled': flow.isRunning}">
         <div *ngIf="isArray(job) && !job[maxArray(flow.flow)] && !!job[maxArray(flow.flow) - 1]; else nothing">
           <div class="node-title z-depth-1 add-title">Add a job</div>
           <div class="node" (click)="pushJob(j)">

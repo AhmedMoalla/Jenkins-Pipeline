@@ -73,6 +73,7 @@ table.browser-default {
     background-color: grey;
     width: 15px;
     height: 15px;
+    cursor: default;
 }
 
 .node.node-selected {
@@ -80,15 +81,13 @@ table.browser-default {
 }
 
 .node.node-success {
-    background-color: #83d37d;
+    background-color: #81c784;
+    border-color: #4caf50 
 }
 
 .node.node-error {
-    background-color: #C9302C;
-}
-
-.node.node-progress {
-    background-color: #FDA402;
+    border-color: #d32f2f ;
+    background-color: #f44336;
 }
 
 .node-start {
@@ -145,5 +144,27 @@ table.browser-default {
     top: -113px;
     left: -20px;
     position: absolute;
-    z-index: -1;
+    z-index: -2;
+}
+
+.disabled .node-title,
+.disabled .node {
+    background: lightgrey;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.disabled .node-title {
+    border: 2px solid grey;
+    color: grey;
+}
+
+span.disabled {
+    background: lightgrey !important;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+span.disabled i {
+    color: grey;
 }

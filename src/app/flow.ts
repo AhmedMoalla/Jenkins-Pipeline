@@ -3,4 +3,5 @@ export class Flow {
     name?: string;
     flow?: any[];
     parameters?: any;
+    isRunning?: boolean;
 }

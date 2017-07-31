@@ -1,0 +1,44 @@
+<div class="flow-build" *ngIf="currentFlow | async; let flow">
+  <div *ngIf="currentBuild && (currentBuild | async); let build">
+    <div class="navbar">
+      <nav class="white">
+        <div class="nav-wrapper">
+          <ul class="left" style="width: 20%">
+            <li [ngClass]="{'disabled': (build.buildId - 1) == 0}">
+              <a class="black-text" [routerLink]="['/flow', flow.name, 'builds', build.buildId - 1]">
+                <i class="material-icons indigo-text left">chevron_left</i>
+                Previous Build
+              </a>
+            </li>
+          </ul>
+          <ul class="center">
+            <li style="width: 60%; height: 64px">
+              <div class="black-text container" style="margin: 0; width: 100%">
+                <div class="row">
+                  <div class="col s3">Pipeline: {{ flow.name }}</div>
+                  <div class="col s3">Build: #{{ build.buildId }}</div>
+                  <div class="col s3">State: {{ build.status }}</div>
+                  <div class="col s3">Date: {{ timestampToDateString(build.timestamp) }}</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="right" style="width: 20%">
+            <li class="right">
+              <a class="black-text" [routerLink]="['/flow', flow.name, 'builds', build.buildId + 1]">
+                <i class="material-icons indigo-text right">chevron_right</i>
+                Next Build (Disable)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="card flow">
+      <app-build-info-flow [flow]="build._" (jobDetails)="showJobBuildDetails($event)"></app-build-info-flow>
+    </div>
+    <div>
+      <app-job-build-details [build]="chosenJobBuild"></app-job-build-details>
+    </div>
+  </div>
+</div>

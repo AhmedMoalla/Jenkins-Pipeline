@@ -1,0 +1,8 @@
+.btn:hover {
+    background-color: #3f51b5;
+}
+
+td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

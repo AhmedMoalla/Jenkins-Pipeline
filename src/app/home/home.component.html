@@ -4,8 +4,8 @@
   </li>
   <li style="padding: 0 10px;">
     <mz-input-container class="col s12">
-      <input mz-input placeholder="Title" type="text">
-      <button mz-button float class="indigo right">create</button>
+      <input mz-input placeholder="Title" type="text" [(ngModel)]="newFlowTitle">
+      <button mz-button float class="indigo right" (click)="createFlow()">create</button>
     </mz-input-container>
   </li>
   <li style="margin-top: 50px">

@@ -16,6 +16,7 @@ import { AddJobModalComponent } from '../add-job-modal/add-job-modal.component';
 export class FlowComponent implements OnInit {
 
   currentFlow: Observable<Flow>;
+  socket: any;
 
   constructor(
     private store: Store<State>,
@@ -23,9 +24,29 @@ export class FlowComponent implements OnInit {
     private modalService: MzModalService
   ) {
     this.currentFlow = this.store.select('currentFlow');
+    this.socket = this.store.select('socket');
   }
 
   ngOnInit() {
+    this.currentFlow.subscribe((flow) => {
+      this.socket.subscribe((socket) => socket.on('flow-update[' + flow.name + ']', (flowStatus) => {
+        const data = flowStatus.data;
+        switch(flowStatus.type) {
+          case "JOB_START":
+              flow.flow[data.index].status = 'PROGRESS'
+          break;
+          case "JOB_END":
+              flow.flow[data.index].status = flowStatus.status;
+          break;
+          case "PARALLEL_JOB_START":
+              flow.flow[data.index][data.j].status = 'PROGRESS'
+          break;
+          case "PARALLEL_JOB_END":
+              flow.flow[data.index][data.j].status = flowStatus.status;
+          break;
+        }
+      }))
+    })
   }
 
   pushJob(position) {
